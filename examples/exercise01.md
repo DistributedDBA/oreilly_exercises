@@ -26,3 +26,7 @@ vi inventory
 ```
 ansible-playbook playbooks/01_setup.yml
 ```
+
+## Task
+1. Add a second GCE instance in Terraform
+2. Configure the new instance with Ansible
