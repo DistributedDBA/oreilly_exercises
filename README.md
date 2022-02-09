@@ -27,6 +27,8 @@ cd oreilly_exercises
 
 - Install ansible, but first get python3 using pyenv, all in a helper script
 ```
+./setup_pyenv.sh
+exec "$SHELL"
 ./setup_ansible.sh
 ```
 
