@@ -25,10 +25,11 @@ git clone git@github.com:DistributedDBA/oreilly_exercises.git
 cd oreilly_exercises
 ```
 
-- Install ansible and configure the inventory
+- Install ansible, but first get python3 using pyenv, all in a helper script
 ```
-pip install ansible
+./setup_ansible.sh
 ```
+
 
 ### Exercises
 - [Exercise 1](examples/exercise01.md) - Set up MySQL instances
