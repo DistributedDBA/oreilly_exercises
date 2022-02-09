@@ -16,12 +16,12 @@ This quick start guide assumes the use of Cloud Shell. The reason for this is it
 - Generate an SSH key 
 
 ```
-ssh-keygen -t ed25519 -C "pda_oreilly_training"
+ssh-keygen -t rsa -b 4096 -C "pda_oreilly_training"
 ```
 
 - Clone repo 
 ```
-git clone git@github.com:DistributedDBA/oreilly_exercises.git
+git clone https://github.com/DistributedDBA/oreilly_exercises.git
 cd oreilly_exercises
 ```
 
