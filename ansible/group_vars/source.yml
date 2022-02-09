@@ -1,0 +1,6 @@
+---
+users: 
+  - name: "oreilly"
+    host: "%"
+    password: "training"
+    priv: "*.*:ALL"

@@ -1,0 +1,50 @@
+# Question: Is this idempotent? What happens if you run it a second time?
+---
+- hosts: all
+  become: True
+  gather_facts: yes
+  vars:
+    users: 
+      replication:
+        host: "%"
+        password: "replica"
+        priv: "*.*:REPLICATION SLAVE"
+  tasks:
+    - name: "Configure MySQL"
+      ansible.builtin.template:
+        src: my.cnf.j2
+        dest: /etc/mysql/conf.d/mysql.cnf
+        owner: mysql
+        group: mysql
+        mode: '0644'
+      
+    - name: "Restart MySQL" 
+      ansible.builtin.service:
+        name: mysql
+        state: restarted
+      # when: mysql_config.changed
+
+    - name: "Configure MySQL users"
+      community.mysql.mysql_user:
+        name: "{{ item }}"
+        host: "{{ users[item].host }}"
+        password: "{{ users[item].password }}"
+        priv: "{{ users[item].priv }}"
+        state: present
+      with_items: "{{ users }}"
+      when: is_replica != True
+      
+    - name: Set primary
+      community.mysql.mysql_replication: 
+        mode: changeprimary 
+        primary_host: "{{ hostvars.mysql_source.ansible_host }}"
+        primary_auto_position: "yes"
+        master_user: "replication"
+        master_password: "{{ users.replication.password }}"
+      when: is_replica == True
+      register: change_primary
+
+    - name: Start replica
+      community.mysql.mysql_replication: 
+        mode: startreplica
+      when: is_replica == True

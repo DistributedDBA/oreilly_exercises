@@ -1,0 +1,4 @@
+mysql_source ansible_host="XXX.XXX.XXX.XXX"
+
+[source]
+mysql_source

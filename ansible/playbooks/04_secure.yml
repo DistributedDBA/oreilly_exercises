@@ -1,0 +1,19 @@
+---
+- hosts: source
+  become: True
+  gather_facts: False
+  vars:
+    users: 
+      - name: "oreilly"
+        host: "%"
+        password: "training"
+        priv: "*.*:ALL"
+  tasks:
+    - name: "Add MySQL users"
+      community.mysql.mysql_user:
+        name: "{{ item.name }}"
+        host: "{{ item.host }}"
+        password: "{{ item.password }}"
+        priv: "{{ item.priv }}"
+        state: present
+      with_items: "{{ users }}"

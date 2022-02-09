@@ -1,0 +1,41 @@
+---
+- hosts: source
+  become: True
+  gather_facts: yes
+  vars:
+    root_password: "admin"
+  tasks:
+    - name: "Install MySQL"
+      ansible.builtin.apt:
+        name: "{{ item }}"
+        state: present
+        update_cache: true
+        force: yes
+      with_items:
+        - mysql-client
+        - mysql-server
+        - python3-pip
+    - name: "Install python dependencies"
+      ansible.builtin.pip:
+        name: "{{ item }}"
+        state: latest
+      with_items:
+        - PyMySQL
+    - name: "Change the authentication plugin of MySQL root user to mysql_native_password"
+      ansible.builtin.shell: |
+        mysql -u root -e 'UPDATE mysql.user SET plugin="mysql_native_password" WHERE user="root" AND host="localhost";
+        FLUSH PRIVILEGES'; touch /root/native_password
+      args:
+        creates: /root/native_password
+    - name: "Configure MySQL root user"
+      community.mysql.mysql_user:
+        name: "root"
+        password: "{{ root_password }}"
+        state: present
+    - name: "Configure my.cnf"
+      ansible.builtin.template:
+        src: .my.cnf.j2
+        dest: /root/.my.cnf
+        owner: root
+        group: root
+        mode: '0600'
