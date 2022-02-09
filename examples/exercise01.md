@@ -4,8 +4,10 @@
 - Configure terraform to work with your project
 
 ```
-cd ~/oreilly_exercises/ansibleterraform
-cp terraform.tfvars.example => terraform.tfvars 
+cd ~/oreilly_exercises/terraform
+cp terraform.tfvars.example terraform.tfvars 
+gcloud config get-value project
+vi terraform.tfvars
 # modify the settings, primarily projectID
 terraform init
 terraform apply
@@ -15,6 +17,7 @@ terraform apply
 ```
 cd ~/oreilly_exercises/ansible
 cp inventory.example inventory
+vi inventory
 # Modify IP from output of terraform
 ```
 

@@ -2,6 +2,6 @@ gcp_project = "<PROJECT_ID>"
 
 gce_config = {
     name_prefix = "oreilly-pda"
-    macine_type = "e2-micro"
+    machine_type = "e2-micro"
     zone        = "us-central1-a"
 }
