@@ -32,12 +32,10 @@ exec "$SHELL"
 ./setup_ansible.sh
 ```
 
-
 ### Exercises
 - [Exercise 1](examples/exercise01.md) - Set up MySQL instances
 - [Exercise 2](examples/exercise02.md) - Configure MySQL replication
-- [Exercise 3](examples/exercise03.md) - Perform a MySQL failover
-- [Exercise 4](examples/exercise04.md) - Securing secrets
+- [Exercise 3](examples/exercise03.md) - Securing secrets
 
 ## FAQ 
 - What is the purpose of Terraform?
