@@ -5,3 +5,7 @@ binlog_format = row
 gtid-mode=ON
 enforce-gtid-consistency
 log-slave-updates
+
+{% if is_readonly is defined and is_readonly is sameas True %}
+read_only=1
+{% endif %}

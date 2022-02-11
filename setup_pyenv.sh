@@ -13,3 +13,6 @@ export PATH="\$HOME/.pyenv/bin:\$PATH"
 eval "\$(pyenv init --path)"
 eval "\$(pyenv init -)"
 EOF
+
+# Enable gce service
+gcloud services enable compute.googleapis.com

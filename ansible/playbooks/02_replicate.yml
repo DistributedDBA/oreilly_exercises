@@ -13,7 +13,7 @@
     - name: "Configure MySQL"
       ansible.builtin.template:
         src: my.cnf.j2
-        dest: /etc/mysql/conf.d/mysql.cnf
+        dest: /etc/mysql/mysql.conf.d/mysqld.cnf
         owner: mysql
         group: mysql
         mode: '0644'
@@ -37,7 +37,7 @@
     - name: Set primary
       community.mysql.mysql_replication: 
         mode: changeprimary 
-        primary_host: "{{ hostvars.mysql_source.ansible_host }}"
+        primary_host: "{{ hostvars['mysql_source']['ansible_all_ipv4_addresses'][0] }}"
         primary_auto_position: "yes"
         master_user: "replication"
         master_password: "{{ users.replication.password }}"

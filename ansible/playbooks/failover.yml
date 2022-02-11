@@ -3,15 +3,24 @@
 - hosts: all
   become: True
   gather_facts: no
- 
   tasks:
     - name: "Enable read_only on old_primary"
-      # community.mysql.mysql_variables
+      #community.mysql.mysql_variables
+
     - name: "Wait for replication delay on new_primary"
-      # community.mysql.mysql_replication
+      #community.mysql.mysql_variables
+
     - name: "Stop replication on new_primary"
-      # community.mysql.mysql_replication
+      #community.mysql.mysql_replication
+      
+    - name: "Reset replication on new_primary"
+      #community.mysql.mysql_replication
+        
     - name: "Disable read_only on new_primary"
-      # community.mysql.mysql_variables
+      #community.mysql.mysql_variables
+  
     - name: "Configure replication on old_primary"
-      # community.mysql.mysql_replication
+      #community.mysql.mysql_replication
+
+    - name: Start replication on old_primary
+      #community.mysql.mysql_replication

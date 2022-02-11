@@ -1,3 +1,4 @@
 ---
 server_id: 2
 is_replica: True
+is_readonly: True

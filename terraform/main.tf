@@ -21,7 +21,7 @@ resource "google_compute_instance" "db_primary" {
     machine_type    = var.gce_config.machine_type
     zone            = var.gce_config.zone
 
-    tags = ["dev", "training"]
+    tags = ["dev", "training", "mysql_server"]
 
     boot_disk {
         initialize_params {
